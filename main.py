@@ -1,19 +1,16 @@
-# NÃO PERMITIR CADASTRO COM EMAIL'S REPETIDOS
-# NÃO PERMITIR CADASTRO COM CPF REPETIDOS
 # VALIDAR EMAIL, CPF, TELEFONE
 # VALIDAR NOME E SOBRENOME - NÃO CONTER NUMEROS
 
 import json
-from funcoes import sing_up, save, get_users, validate_access
+from funcoes import init, sing_up, save, get_users, validate_access, validate_registration
 
 while True:
     
-    print(" Escolha a opção desejada: ")
-    acess = int(input("1 - Sing In (Entrar)  2- Sing Up (Cadastrar) 3- Close (Sair) "))
+    start = init()
 
     #Main
 
-    if acess == 1:
+    if start == 1:
 
         #conteúdo do arquivo
         users = get_users()
@@ -28,7 +25,9 @@ while True:
         else:
             print("Acesso negado!")
    
-    elif acess == 2:
+
+    elif start == 2:
+
         dice = sing_up()
         
         print("Salvar Cadastro: ")
@@ -44,7 +43,7 @@ while True:
             print("Erro!")
 
     
-    elif acess == 3:
+    elif start == 3:
         break
 
     
