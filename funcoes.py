@@ -28,7 +28,7 @@ def validate_access(login_email, login_password):
     validated = False
     users = get_users()
     for line in users:
-        d_users = json.loads(line) #transforma string em dicionário
+        d_users = json.loads(line) 
         validated = login_email in d_users.values() and login_password in d_users.values()
         if validated:
             return True

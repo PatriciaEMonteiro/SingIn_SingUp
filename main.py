@@ -33,6 +33,7 @@ while True:
 
         if registration == 's':
             save(content=dice)
+            print("Cadastro realizado com sucesso! ")
 
         elif registration == 'n':
             print("Cadastro Cancelado!")
@@ -42,6 +43,7 @@ while True:
 
     
     elif start == 3:
+        print("Saindo...")
         break
 
     
