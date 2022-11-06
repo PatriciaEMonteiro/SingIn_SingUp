@@ -1,5 +1,3 @@
-# VALIDAR EMAIL, CPF, TELEFONE
-# VALIDAR NOME E SOBRENOME - NÃO CONTER NUMEROS
 
 import json
 from funcoes import init, sing_up, save, get_users, validate_access, validate_registration

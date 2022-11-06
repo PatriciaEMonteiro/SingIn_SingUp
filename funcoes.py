@@ -1,10 +1,13 @@
 import json
+import re
+
 
 #Função Inicio
 def init ():
     print(" Escolha a opção desejada: ")
     acess = int(input("1 - Sing In (Entrar)  2- Sing Up (Cadastrar) 3- Close (Sair) "))
     return acess
+
 
 #Função Arquivo
 def save (content):
@@ -33,7 +36,14 @@ def validate_access(login_email, login_password):
     return validated
 
 
-#Função validação Email e CPF
+#Função para validar o email e garantir que seja inserido corretamente
+regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
+def validated_email (email):
+    result_validated = re.search(regex,email)
+    return result_validated
+
+
+#Função verificar se Email e CPF já estão cadastrados
 def validate_registration(email, CPF):
     validated = False
     users = get_users()
@@ -55,18 +65,38 @@ def sing_up ():
     nome = input("Nome: ")
     sobrenome = input("Sobrenome: ")
 
-    #validando email e cpf
-    email = input("Email: ")
-    CPF = input("CPF: ")
+    #Recebe e Valida email
+    while True:
+        email = input("Email: ")
+        if validated_email(email):
+            break
+        else:
+            print("Email Inválido")
+            continue
 
+    #Recebe e Verifica se CPF contém apenas numeros
+    while True:
+        CPF = input("CPF: ")
+        if CPF.isdigit() and len(CPF)==11:
+            break
+        else:
+            print("CPF não é valido!")
+            continue
+
+    #Validando email e cpf para garantir que não haja cadastros repetidos
     registration = validate_registration(email, CPF)
-    
     if registration:
         print ("Email e Cpf já cadastrados!")
         return init()
         
-    #Rebendo telefone
-    telefone = input("Telefone: ")
+    #Recebe e Valida telefone para garantir que o mesmo tenha apenas numeros
+    while True:
+        telefone = input("Telefone: ")
+        if telefone.isdigit() and len(telefone)==11:
+            break
+        else:
+            print("Telefone não é valido!")
+            continue
     
     #validando senha
     while True:
